@@ -57,7 +57,6 @@ def test_bigram(model_file, test_file):
 
   prob_of = import_model(model_file)
 
-
   entropy_of = {}
   for lam100_1 in range(lam100_start, lam100_end, lam100_step):
     for lam100_2 in range(lam100_start, lam100_end, lam100_step):
@@ -69,17 +68,22 @@ def test_bigram(model_file, test_file):
         words.insert(0, '<s>')
         words.append('</s>')
         for i in range(1, len(words) - 1):
-          P1 = lam_1 * prob_of[words[i]] + (1 - lam_1) / N
-          P2 = lam_2 * prob_of['%s %s' % (words[i - 1], words[i])] \
-               + (1 - lam_2) * P1
+          unigram = words[i]
+          bigram  = '%s %s' % (words[i - 1], words[i])
+
+          P1 = lam_1 * prob_of[unigram] + (1 - lam_1) / N
+          P2 = lam_2 * prob_of[bigram] + (1 - lam_2) * P1
           H += -math.log(P2, 2)
           W += 1
+          
           entropy = (float(H) / W)
           entropy_of["%.2f %.2f" % (lam_1, lam_2)] = entropy
 
   # print 'entropy = %f' % (entropy)
+  result_file = open("bigram.result", "w")
   for lams, ent in sorted(entropy_of.items(), key = lambda x: x[1]):
-    print lams, ent
+    result_file.write("%s\t%.6f\n" % (lams, ent))
+    # print lams, ent
 
 
 if __name__ == '__main__':
