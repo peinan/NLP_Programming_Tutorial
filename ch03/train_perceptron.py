@@ -27,24 +27,25 @@ def create_features(x):
 
 
 def update_weights(weight_of, phi_of, y):
-  weight_of = defaultdict(lambda: 0)
   for name, value in phi_of.items():
     weight_of[name] += value * y
 
 
 def train_perceptron(train_file):
-  weight_of = {}
-  iteration = 3
+  weight_of = defaultdict(lambda: 0)
+  phi_of    = defaultdict(lambda: 0)
+
   for line in open(train_file, 'r'):
     y, x   = line.strip().split('\t')
     y      = int(y)
     phi_of = create_features(x)
     y_     = predict_one(weight_of, phi_of)
     # print y_, y
-    while y_ != y:
+    if y_ != y:
       update_weights(weight_of, phi_of, y)
+
   with open('perceptron.model', 'w') as model_file:
-    for k, v in phi_of.items():
+    for k, v in sorted(weight_of.items(), key = lambda x: x[0]):
       model_file.write('%s\t%f\n' % (k, v))
 
 

@@ -20,10 +20,11 @@ def predict_all(model_file, input_file):
 
 
 def import_model(model_file):
+  weight_of = {}
   for line in open(model_file, 'r'):
     line = line.strip()
     ngram, weight = line.split("\t")
-    weight_of[ngram] = weight
+    weight_of[ngram] = float(weight)
   return weight_of
 
 
@@ -33,4 +34,4 @@ def test_perceptron(model_file, test_file):
 
 if __name__ == '__main__':
   import sys
-  test_perceptron(sys.argv[1])
+  test_perceptron(sys.argv[1], sys.argv[2]) # (model_file, test_file)
