@@ -25,6 +25,18 @@ def train_unigram(train_file):
 		model_file.write("%s\t%f\n" % (k, prob))
 
 
+def calc_prob(word, unigram_of):
+	lambda_1   = .95
+	lambda_unk = 1 - lambda_1
+	N          = 10 ** 6
+
+	prob = lambda_unk / N
+	if word in unigram_of:
+		prob += lambda_1 * unigram_of[word]
+
+	return prob
+
+
 def import_model(model_file):
 	prob_of = defaultdict(lambda: 0)
 	for line in open(model_file, "r"):
