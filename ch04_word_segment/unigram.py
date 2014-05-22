@@ -13,7 +13,7 @@ def train_unigram(train_file):
 	
 	for line in open(train_file, "r"):
 		words = line.strip().split(" ")
-		# words.append("</s>")
+		words.append("</s>")
 		for word in words:
 			count_of[word] += 1
 			total_count    += 1
