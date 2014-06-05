@@ -48,7 +48,7 @@ def test_hmm(trans_model_file, emit_model_file, test_file):
           prev_next = '%s %s' % (prev_tag, next_tag)
           next_word = '%s %s' % (next_tag, words[i])
           if i_prev in best_score and prev_next in trans_prob_of:
-            # smo othing for emission prob
+            # smoothing for emission prob
             if next_word not in emit_prob_of:
               vocab[words[i]] = 1
               prob_E = (1 - lambda_) / len(vocab)
@@ -62,6 +62,7 @@ def test_hmm(trans_model_file, emit_model_file, test_file):
             if i_next not in best_score or best_score[i_next] > tmp_score:
               best_score[i_next] = tmp_score
               best_edge[i_next]  = i_prev
+    print best_edge
 
     # treating the end of sentence
     for prev_tag in possible_tags.keys():
