@@ -1,0 +1,32 @@
+SUFFIX-2 a	0.0
+SUFFIX-2 b	0.0
+SUFFIX-2 c	0.0
+T Y Z	0.0
+SUFFIX-1 c	0.0
+SUFFIX-1 b	0.0
+SUFFIX-1 a	0.0
+T X Y	0.0
+T X X	0.0
+SUFFIX-3 a	0.0
+SUFFIX-3 c	0.0
+SUFFIX-3 b	0.0
+T Y </s>	0.0
+E Y a	-1.0
+E Z b	-1.0
+E Y c	-1.0
+E Y b	2.0
+E X a	0.0
+E X b	-1.0
+E X c	1.0
+PREFIX-2 c	0.0
+PREFIX-2 b	0.0
+PREFIX-2 a	0.0
+PREFIX-3 a	0.0
+PREFIX-3 b	0.0
+PREFIX-3 c	0.0
+E Z a	1.0
+T Z </s>	0.0
+PREFIX-1 a	0.0
+PREFIX-1 b	0.0
+PREFIX-1 c	0.0
+T <s> X	0.0
